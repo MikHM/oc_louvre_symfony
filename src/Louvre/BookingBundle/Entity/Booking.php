@@ -49,6 +49,26 @@ class Booking
      */
     private $clientEmail;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Louvre\BookingBundle\Entity\Visitors", cascade={"persist"})
+     */
+    private $visitor;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="creationDate", type="datetimetz")
+     */
+    private $creationDate;
+
+
+
+    public function __construct()
+    {
+        $this->creationDate = new \DateTimeZone("Europe/Paris");
+    }
+
+
 
     /**
      * Get id

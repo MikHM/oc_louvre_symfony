@@ -56,6 +56,12 @@ class Visitors
      */
     private $discount;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Louvre\BookingBundle\Entity\Booking", cascade={"persist"})
+     * @ORM\JoinColumn(name="bookingId", referencedColumnName="id")
+     */
+    private $booking;
+
 
     /**
      * Get id
