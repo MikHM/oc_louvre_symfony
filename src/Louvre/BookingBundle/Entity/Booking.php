@@ -50,14 +50,14 @@ class Booking
     private $clientEmail;
 
     /**
-     * @ORM\OneToMany(targetEntity="Louvre\BookingBundle\Entity\Visitors", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Louvre\BookingBundle\Entity\Visitors", mappedBy="booking", cascade={"persist"})
      */
     private $visitor;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="creationDate", type="datetimetz")
+     * @ORM\Column(name="creationDate",  type="datetimetz")
      */
     private $creationDate;
 
@@ -175,5 +175,62 @@ class Booking
     {
         return $this->clientEmail;
     }
-}
 
+    /**
+     * Set creationDate
+     *
+     * @param \DateTime $creationDate
+     *
+     * @return Booking
+     */
+    public function setCreationDate($creationDate)
+    {
+        $this->creationDate = $creationDate;
+
+        return $this;
+    }
+
+    /**
+     * Get creationDate
+     *
+     * @return \DateTime
+     */
+    public function getCreationDate()
+    {
+        return $this->creationDate;
+    }
+
+    /**
+     * Add visitor
+     *
+     * @param \Louvre\BookingBundle\Entity\Visitors $visitor
+     *
+     * @return Booking
+     */
+    public function addVisitor(\Louvre\BookingBundle\Entity\Visitors $visitor)
+    {
+        $this->visitor[] = $visitor;
+
+        return $this;
+    }
+
+    /**
+     * Remove visitor
+     *
+     * @param \Louvre\BookingBundle\Entity\Visitors $visitor
+     */
+    public function removeVisitor(\Louvre\BookingBundle\Entity\Visitors $visitor)
+    {
+        $this->visitor->removeElement($visitor);
+    }
+
+    /**
+     * Get visitor
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVisitor()
+    {
+        return $this->visitor;
+    }
+}

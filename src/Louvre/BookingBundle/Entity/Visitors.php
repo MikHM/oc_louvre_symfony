@@ -57,6 +57,13 @@ class Visitors
     private $discount;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="ticketPrice", type="decimal", precision=10, scale=2)
+     */
+    private $ticketPrice;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Louvre\BookingBundle\Entity\Booking", cascade={"persist"})
      * @ORM\JoinColumn(name="bookingId", referencedColumnName="id")
      */
@@ -192,5 +199,52 @@ class Visitors
     {
         return $this->discount;
     }
-}
 
+    /**
+     * Set booking
+     *
+     * @param \Louvre\BookingBundle\Entity\Booking $booking
+     *
+     * @return Visitors
+     */
+    public function setBooking(\Louvre\BookingBundle\Entity\Booking $booking = null)
+    {
+        $this->booking = $booking;
+
+        return $this;
+    }
+
+    /**
+     * Get booking
+     *
+     * @return \Louvre\BookingBundle\Entity\Booking
+     */
+    public function getBooking()
+    {
+        return $this->booking;
+    }
+
+    /**
+     * Set ticketPrice
+     *
+     * @param string $ticketPrice
+     *
+     * @return Visitors
+     */
+    public function setTicketPrice($ticketPrice)
+    {
+        $this->ticketPrice = $ticketPrice;
+
+        return $this;
+    }
+
+    /**
+     * Get ticketPrice
+     *
+     * @return string
+     */
+    public function getTicketPrice()
+    {
+        return $this->ticketPrice;
+    }
+}
