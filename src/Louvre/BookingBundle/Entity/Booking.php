@@ -25,9 +25,9 @@ class Booking
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateOfVisit", type="datetime")
+     * @ORM\Column(name="dateOfVisit", type="date")
      *
-     * @Assert\NotBlank()
+     *
      *
      */
     private $dateOfVisit;
@@ -69,7 +69,7 @@ class Booking
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="creationDate",  type="datetimetz")
+     * @ORM\Column(name="creationDate",  type="datetime")
      */
     private $creationDate;
 

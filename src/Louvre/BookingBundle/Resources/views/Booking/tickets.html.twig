@@ -6,6 +6,9 @@
 {% endblock %}
 
 {% block body %}
+    <h2>Tickets</h2>
+
+    {{ reservation.clientEmail }}
 
     {{ form(form, {attr: {novalidate: "novalidate"}}) }}
 
