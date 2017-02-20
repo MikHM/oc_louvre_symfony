@@ -62,7 +62,7 @@ class Booking
     private $clientEmail;
 
     /**
-     * @ORM\OneToMany(targetEntity="Louvre\BookingBundle\Entity\Visitors", mappedBy="booking", cascade={"persist"})
+     *
      */
     private $visitor;
 

@@ -73,8 +73,13 @@ class Visitors
     private $ticketPrice;
 
     /**
+     * @var Booking
+     *
+     * @Assert\Valid()
+     * @Assert\Type(type="BookingBundle\Entity\Booking")
+     *
      * @ORM\ManyToOne(targetEntity="Louvre\BookingBundle\Entity\Booking", cascade={"persist"})
-     * @ORM\JoinColumn(name="bookingId", referencedColumnName="id")
+     * @ORM\JoinColumn(name="bookingId", referencedColumnName="id", nullable=false)
      */
     private $booking;
 
@@ -216,7 +221,7 @@ class Visitors
      *
      * @return Visitors
      */
-    public function setBooking(\Louvre\BookingBundle\Entity\Booking $booking = null)
+    public function setBooking(\Louvre\BookingBundle\Entity\Booking $booking)
     {
         $this->booking = $booking;
 
