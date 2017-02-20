@@ -3,10 +3,11 @@
 namespace Louvre\BookingBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,10 +19,25 @@ class BookingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateOfVisit', DateType::HTML5_FORMAT)
-            ->add('durationOfVisit', CheckboxType::class)
-            ->add('numberOfTickets', IntegerType::class)
-            ->add('clientEmail', EmailType::class)
+            ->add('dateOfVisit', DateType::class, array(
+                "label" => "Date de votre visite:"
+            ))
+            ->add('durationOfVisit', ChoiceType::class, array(
+                'label' => 'Billet journée entière ou demi-journée?',
+                'choices'  => array(
+                    'Demi-journée' => false,
+                    'Journée' => true,
+                ),
+            ))
+            ->add('numberOfTickets', IntegerType::class, array(
+                "label" => "Nombre de billets"
+            ))
+            ->add('clientEmail', EmailType::class, array(
+                "label" => "Votre adresse email"
+            ))
+            ->add("submit", SubmitType::class, array(
+                "label" => "Reserver"
+            ))
         ;
     }
     
