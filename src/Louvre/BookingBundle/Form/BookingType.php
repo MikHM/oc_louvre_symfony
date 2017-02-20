@@ -3,6 +3,10 @@
 namespace Louvre\BookingBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,11 +18,10 @@ class BookingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateOfVisit')
-            ->add('durationOfVisit')
-            ->add('numberOfTickets')
-            ->add('clientEmail')
-            ->add('creationDate')
+            ->add('dateOfVisit', DateType::HTML5_FORMAT)
+            ->add('durationOfVisit', CheckboxType::class)
+            ->add('numberOfTickets', IntegerType::class)
+            ->add('clientEmail', EmailType::class)
         ;
     }
     
