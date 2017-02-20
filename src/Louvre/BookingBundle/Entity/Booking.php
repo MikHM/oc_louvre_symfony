@@ -3,6 +3,7 @@
 namespace Louvre\BookingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Booking
@@ -25,6 +26,9 @@ class Booking
      * @var \DateTime
      *
      * @ORM\Column(name="dateOfVisit", type="datetime")
+     *
+     * @Assert\NotBlank()
+     *
      */
     private $dateOfVisit;
 
@@ -39,6 +43,10 @@ class Booking
      * @var int
      *
      * @ORM\Column(name="numberOfTickets", type="integer")
+     *
+     * @Assert\NotBlank(message="Veuillez indiquer le nombre de billets.")
+     *
+     * @Assert\GreaterThan(value=0, message="Le nombre de billets doit être supérieur à zéro.")
      */
     private $numberOfTickets;
 
@@ -46,6 +54,10 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="clientEmail", type="string", length=255)
+     *
+     * @Assert\NotBlank(message="Veuillez fournir un email pour la réservation.")
+     *
+     * @Assert\Email(message="L'adresse mail fourni '{{ value }}' n'est pas valide.")
      */
     private $clientEmail;
 
@@ -65,7 +77,7 @@ class Booking
 
     public function __construct()
     {
-        $this->creationDate = new \DateTimeZone("Europe/Paris");
+        $this->creationDate = new \DateTime();
     }
 
 

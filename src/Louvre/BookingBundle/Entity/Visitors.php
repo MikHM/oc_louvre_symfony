@@ -3,6 +3,7 @@
 namespace Louvre\BookingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Visitors
@@ -25,6 +26,9 @@ class Visitors
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=255)
+     *
+     * @Assert\NotBlank(message="Veuillez saisir le prénom du visiteur.")
+     * @Assert\Length(min=2, minMessage="Minimum 2 lettres.", max="55", maxMessage="Maximum 45 lettres.")
      */
     private $firstName;
 
@@ -32,6 +36,9 @@ class Visitors
      * @var string
      *
      * @ORM\Column(name="lastName", type="string", length=255)
+     *
+     * @Assert\NotBlank(message="Veuillez saisir le nom du visiteur.")
+     * @Assert\Length(min=2, minMessage="Minimum 2 lettres.", max="55", maxMessage="Maximum 45 lettres.")
      */
     private $lastName;
 
@@ -39,6 +46,8 @@ class Visitors
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
+     *
+     * @Assert\NotBlank(message="Veuillez choisir un pays.")
      */
     private $country;
 

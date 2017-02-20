@@ -21,7 +21,7 @@ class BookingType extends AbstractType
         $builder
             ->add('dateOfVisit', DateType::class, array(
                 "label" => "Date de votre visite:"
-            ))
+                ))
             ->add('durationOfVisit', ChoiceType::class, array(
                 'label' => 'Billet journée entière ou demi-journée?',
                 'choices'  => array(
