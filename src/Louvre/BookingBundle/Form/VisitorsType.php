@@ -18,10 +18,18 @@ class VisitorsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstName', TextType::class)
-            ->add('lastName' , TextType::class)
-            ->add('country', CountryType::class)
-            ->add('dateOfBirth', BirthdayType::class)
+            ->add('firstName', TextType::class, array(
+                "label" => "Prénom"
+            ))
+            ->add('lastName' , TextType::class, array(
+                "label" => "Nom"
+            ))
+            ->add('country', CountryType::class, array(
+                "label" => "Pays"
+            ))
+            ->add('dateOfBirth', BirthdayType::class, array(
+                "label" => "Date de naissance"
+            ))
             ->add('discount', ChoiceType::class, array(
                 'label' => 'Tarif réduit?',
                 'choices'  => array(

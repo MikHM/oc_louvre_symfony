@@ -51,6 +51,7 @@ class BookingController extends Controller
     }
 
 
+
     /**
      * @Route("/tickets/{id}/{amount}", name="tickets")
      */
@@ -62,6 +63,11 @@ class BookingController extends Controller
 
         $newVisitor = new Visitors();
 
+        /*for ($i = 0; $i < $amount; $i++)
+        {
+
+        }*/
+
         $form = $this->createForm(VisitorsType::class, $newVisitor, array(
             "method"=>"POST",
             "attr" => [
@@ -71,6 +77,7 @@ class BookingController extends Controller
         ));
 
         $formView = $form->createView();
+
 
         return $this->render("@Booking/Booking/tickets.html.twig", array(
             "reservation" => $reservation,

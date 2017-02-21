@@ -2,13 +2,10 @@
 
 {% block head %}
     {{ parent() }}
-    {%  block title %}Billeterie{% endblock %}
+    {%  block title %}Billeterie - Visiteurs{% endblock %}
 {% endblock %}
 
 {% block body %}
-    <h2>Tickets</h2>
-
-    {{ reservation.clientEmail }}
 
     {{ form(form, {attr: {novalidate: "novalidate"}}) }}
 
