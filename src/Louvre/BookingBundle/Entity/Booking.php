@@ -3,6 +3,7 @@
 namespace Louvre\BookingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -13,6 +14,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Booking
 {
+    /**
+     * 
+     */
+     /*@ORM\OneToMany(targetEntity="Museum\BookingBundle\Entity\Visitors", mappedBy="booking", cascade={"persist"})*/
+    private $visitor;
+
     /**
      * @var int
      *
@@ -27,7 +34,7 @@ class Booking
      *
      * @ORM\Column(name="dateOfVisit", type="date")
      *
-     *
+     * @Assert\NotBlank(message="Veuillez indiquer la date de votre visite.")
      *
      */
     private $dateOfVisit;
@@ -36,6 +43,7 @@ class Booking
      * @var int
      *
      * @ORM\Column(name="durationOfVisit", type="integer")
+     *
      */
     private $durationOfVisit;
 
@@ -62,22 +70,32 @@ class Booking
     private $clientEmail;
 
     /**
-     *
-     */
-    private $visitor;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="creationDate",  type="datetime")
      */
     private $creationDate;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="bookingCodeNumber", type="string", length=255, nullable=true)
+     */
+    private $bookingCodeNumber;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="totalBookingPrice", type="integer", nullable=true)
+     */
+    private $totalBookingPrice;
+
 
 
     public function __construct()
     {
         $this->creationDate = new \DateTime();
+        $this->Visitors = new ArrayCollection();
     }
 
 
@@ -244,5 +262,53 @@ class Booking
     public function getVisitor()
     {
         return $this->visitor;
+    }
+
+    /**
+     * Set bookingCodeNumber
+     *
+     * @param string $bookingCodeNumber
+     *
+     * @return Booking
+     */
+    public function setBookingCodeNumber($bookingCodeNumber)
+    {
+        $this->bookingCodeNumber = $bookingCodeNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get bookingCodeNumber
+     *
+     * @return string
+     */
+    public function getBookingCodeNumber()
+    {
+        return $this->bookingCodeNumber;
+    }
+
+    /**
+     * Set totalBookingPrice
+     *
+     * @param integer $totalBookingPrice
+     *
+     * @return Booking
+     */
+    public function setTotalBookingPrice($totalBookingPrice)
+    {
+        $this->totalBookingPrice = $totalBookingPrice;
+
+        return $this;
+    }
+
+    /**
+     * Get totalBookingPrice
+     *
+     * @return integer
+     */
+    public function getTotalBookingPrice()
+    {
+        return $this->totalBookingPrice;
     }
 }

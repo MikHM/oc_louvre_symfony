@@ -14,6 +14,17 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Visitors
 {
     /**
+     * @var Booking
+     *
+     * @Assert\Valid()
+     * @Assert\Type(type="BookingBundle\Entity\Booking")
+     *
+     * @ORM\ManyToOne(targetEntity="Louvre\BookingBundle\Entity\Booking", cascade={"persist"})
+     * @ORM\JoinColumn(name="bookingId", referencedColumnName="id", nullable=false)
+     */
+    private $booking;
+    
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -72,16 +83,7 @@ class Visitors
      */
     private $ticketPrice;
 
-    /**
-     * @var Booking
-     *
-     * @Assert\Valid()
-     * @Assert\Type(type="BookingBundle\Entity\Booking")
-     *
-     * @ORM\ManyToOne(targetEntity="Louvre\BookingBundle\Entity\Booking", cascade={"persist"})
-     * @ORM\JoinColumn(name="bookingId", referencedColumnName="id", nullable=false)
-     */
-    private $booking;
+    
 
 
     /**

@@ -23,7 +23,7 @@ class BookingType extends AbstractType
                 "label" => "Date de votre visite:",
                 "widget" => "single_text",
                 /*"html5" => false,*/
-                "format" => "dd-MM-yyyy",
+                "format" => "MM-dd-yyyy",
                 "placeholder" => array("year" => "Année", "month" => "Mois", "day" => "Jour"),
                 "attr" => array(
                     "class" => "datepicker date"
