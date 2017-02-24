@@ -10,4 +10,17 @@ namespace Louvre\BookingBundle\Repository;
  */
 class BookingRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getNumberOfBookingsPerDay($dayToBeChecked)
+    {
+        /*
+         * - create query to find the bookings corresponding to a specific booking's visit day
+         */
+        $queryBuilder = $this->createQueryBuilder("b");
+        $queryBuilder->where("b.dateOfVisit = :dateOfVisit")->setParameter("dateOfVisit", $dayToBeChecked);
+        $query = $queryBuilder->getQuery();
+        $numberOfBookings = $query->getResult();
+
+        return $numberOfBookings;
+        
+    }
 }
