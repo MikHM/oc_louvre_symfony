@@ -7,6 +7,10 @@
 
 {% block body %}
 
-    {{ form(form, {attr: {novalidate: "novalidate"}}) }}
+    <div class="container">
+        <div class="row">
+            {{ form(form, {attr: {novalidate: "novalidate"}}) }}
+        </div>
+    </div>
 
 {% endblock %}

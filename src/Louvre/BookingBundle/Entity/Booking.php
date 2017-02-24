@@ -15,10 +15,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Booking
 {
     /**
-     * 
+     * @ORM\OneToMany(targetEntity="Louvre\BookingBundle\Entity\Visitors", mappedBy="booking", cascade={"persist"})
      */
-     /*@ORM\OneToMany(targetEntity="Museum\BookingBundle\Entity\Visitors", mappedBy="booking", cascade={"persist"})*/
-    private $visitor;
+    private $visitors;
 
     /**
      * @var int
@@ -239,7 +238,7 @@ class Booking
      */
     public function addVisitor(\Louvre\BookingBundle\Entity\Visitors $visitor)
     {
-        $this->visitor[] = $visitor;
+        $this->visitors[] = $visitor;
 
         return $this;
     }
@@ -251,7 +250,7 @@ class Booking
      */
     public function removeVisitor(\Louvre\BookingBundle\Entity\Visitors $visitor)
     {
-        $this->visitor->removeElement($visitor);
+        $this->visitors->removeElement($visitor);
     }
 
     /**
@@ -261,7 +260,7 @@ class Booking
      */
     public function getVisitor()
     {
-        return $this->visitor;
+        return $this->visitors;
     }
 
     /**
@@ -310,5 +309,15 @@ class Booking
     public function getTotalBookingPrice()
     {
         return $this->totalBookingPrice;
+    }
+
+    /**
+     * Get visitors
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVisitors()
+    {
+        return $this->visitors;
     }
 }

@@ -57,7 +57,7 @@ class BookingController extends Controller
      */
     public function ticketsAction(Request $request, $id, $amount)
     {
-        $repository = $this->getDoctrine()->getRepository("BookingBundle:Booking");
+        $repository = $this->getDoctrine()->getManager()->getRepository("BookingBundle:Booking");
 
         $reservation = $repository->find($id);
 
