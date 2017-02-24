@@ -21,6 +21,8 @@ class BookingRepository extends \Doctrine\ORM\EntityRepository
         $numberOfBookings = $query->getResult();
 
         return $numberOfBookings;
+        // !!! This returns the number or BookingS but does not give the TOTAL number of TicketS!!!
+        // USELESS???
         
     }
 }

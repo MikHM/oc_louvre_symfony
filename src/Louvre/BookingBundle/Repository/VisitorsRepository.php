@@ -10,4 +10,21 @@ namespace Louvre\BookingBundle\Repository;
  */
 class VisitorsRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getNumberOfBookingsPerDay($dayToBeChecked)
+    {
+        /*
+         * - create query to find the write amount of tickets sold of specific day
+         * - Issue: how to count tickets number linked to a booking? = Use joined tables...
+         */
+        $queryBuilder = $this->createQueryBuilder("v");
+        // counting the tickets thanks to the Visitors.id count
+        $queryBuilder->select("COUNT(v.id)");
+        // taking advantage of the @ORM\JoinColumn btw Visitors & Booking entities
+        $queryBuilder->join("v.booking", "v");
+        $queryBuilder->where("b.dateOfVisit = :dateOfVisit")->setParameter("dateOfVisit", $dayToBeChecked);
+        $query = $queryBuilder->getQuery();
+        $result = $query->getSingleScalarResult();
+
+        return $result;
+    }
 }

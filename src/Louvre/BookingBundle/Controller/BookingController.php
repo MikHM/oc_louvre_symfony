@@ -18,7 +18,14 @@ class BookingController extends Controller
      */
     public function newBookingAction(Request $request)
     {
+        // should you use session to ease the creation of the ticket in ticketsAction()???
+        // $session = new Session();
+
         $newBooking = new Booking();
+
+        // Checking the number of booking
+        $repository = $this->getDoctrine()->getRepository("BookingBundle:Booking");
+        $numberOfBookingsForTheDay = $repository->getNumberOfBookingsPerDay($dayToBeChecked); // How do I set the $dayToBeChecked???
 
         $form = $this->createForm(BookingType::class, $newBooking, array(
             "action"=>$this->generateUrl("newbooking"),
