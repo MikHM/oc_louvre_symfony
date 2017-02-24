@@ -16,9 +16,6 @@ class Visitors
     /**
      * @var Booking
      *
-     * @Assert\Valid()
-     * @Assert\Type(type="BookingBundle\Entity\Booking")
-     *
      * @ORM\ManyToOne(targetEntity="Louvre\BookingBundle\Entity\Booking", cascade={"persist"})
      * @ORM\JoinColumn(name="bookingId", referencedColumnName="id", nullable=false)
      */
@@ -81,7 +78,8 @@ class Visitors
      *
      * @ORM\Column(name="ticketPrice", type="decimal", precision=10, scale=2)
      */
-    private $ticketPrice;
+    private $ticketPrice = 0;
+    // TODO remove this and add it for real
 
     
 

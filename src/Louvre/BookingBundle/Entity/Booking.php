@@ -16,6 +16,7 @@ class Booking
 {
     /**
      * @ORM\OneToMany(targetEntity="Louvre\BookingBundle\Entity\Visitors", mappedBy="booking", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $visitors;
 
@@ -239,6 +240,8 @@ class Booking
     public function addVisitor(\Louvre\BookingBundle\Entity\Visitors $visitor)
     {
         $this->visitors[] = $visitor;
+
+        $visitor->setBooking($this);
 
         return $this;
     }

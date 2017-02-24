@@ -28,6 +28,7 @@ class BookingType extends AbstractType
                 "attr" => array(
                     "class" => "datepicker date"
                 )
+                // TODO add constraint "check 1000 tickets" here
                 ))
             ->add('durationOfVisit', ChoiceType::class, array(
                 'label' => 'Billet journée entière ou demi-journée?',

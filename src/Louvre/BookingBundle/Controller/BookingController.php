@@ -5,6 +5,7 @@ namespace Louvre\BookingBundle\Controller;
 
 use Louvre\BookingBundle\Entity\Booking;
 use Louvre\BookingBundle\Entity\Visitors;
+use Louvre\BookingBundle\Form\BookingSecondStepType;
 use Louvre\BookingBundle\Form\BookingType;
 use Louvre\BookingBundle\Form\VisitorsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -19,13 +20,13 @@ class BookingController extends Controller
     public function newBookingAction(Request $request)
     {
         // should you use session to ease the creation of the ticket in ticketsAction()???
-        // $session = new Session();
+        //$session = new Session();
 
         $newBooking = new Booking();
 
         // Checking the number of booking
-        $repository = $this->getDoctrine()->getRepository("BookingBundle:Booking");
-        $numberOfBookingsForTheDay = $repository->getNumberOfBookingsPerDay($dayToBeChecked); // How do I set the $dayToBeChecked???
+        /*$repository = $this->getDoctrine()->getRepository("BookingBundle:Booking");
+        $numberOfBookingsForTheDay = $repository->getNumberOfBookingsPerDay($dayToBeChecked);*/ // How do I set the $dayToBeChecked???
 
         $form = $this->createForm(BookingType::class, $newBooking, array(
             "action"=>$this->generateUrl("newbooking"),
@@ -62,34 +63,49 @@ class BookingController extends Controller
     /**
      * @Route("/tickets/{id}/{amount}", name="tickets")
      */
-    public function ticketsAction(Request $request, $id, $amount)
+    public function ticketsAction(Request $request, Booking $reservation, $amount)
     {
-        $repository = $this->getDoctrine()->getManager()->getRepository("BookingBundle:Booking");
+        $em = $this->getDoctrine()->getManager();
 
-        $reservation = $repository->find($id);
+        $numberOfTickets = $amount;
 
-        $newVisitor = new Visitors();
-
-        /*for ($i = 0; $i < $amount; $i++)
+        for ($i = 0; $i < $numberOfTickets; $i++)
         {
+            $newVisitor = new Visitors();
+            $reservation->addVisitor($newVisitor);
 
-        }*/
+        }
 
-        $form = $this->createForm(VisitorsType::class, $newVisitor, array(
-            "method"=>"POST",
+
+        $form = $this->createForm(BookingSecondStepType::class, $reservation, array(
             "attr" => [
                 "id" => "myform",
                 "class" => "group"
             ]
         ));
 
-        $formView = $form->createView();
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em->flush();
+
+        }
 
         return $this->render("@Booking/Booking/tickets.html.twig", array(
             "reservation" => $reservation,
-            "form" => $formView
+            "form" => $form->createView()
         ));
+        
+    }
+
+    public function summaryAction()
+    {
+        
+    }
+
+    public function checkoutAction()
+    {
         
     }
 
