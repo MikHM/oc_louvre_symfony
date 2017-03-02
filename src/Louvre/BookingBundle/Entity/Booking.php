@@ -5,6 +5,7 @@ namespace Louvre\BookingBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Louvre\BookingBundle\Validator\Constraints as BookingAssert;
 
 /**
  * Booking
@@ -35,6 +36,9 @@ class Booking
      * @ORM\Column(name="dateOfVisit", type="date")
      *
      * @Assert\NotBlank(message="Veuillez indiquer la date de votre visite.")
+     * @BookingAssert\ClosedOnTuesdays()
+     * @BookingAssert\NoBookingOnSundays()
+     * @BookingAssert\ClosedForBankHolidays()
      *
      */
     private $dateOfVisit;
@@ -43,6 +47,8 @@ class Booking
      * @var int
      *
      * @ORM\Column(name="durationOfVisit", type="integer")
+     *
+     * @BookingAssert\After2PM()
      *
      */
     private $durationOfVisit;
