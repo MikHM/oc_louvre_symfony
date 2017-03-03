@@ -7,3 +7,12 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    tickets_availability_check:
+        class: Louvre\BookingBundle\Services\CheckTicketsAvailability
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    tickets_availability_validator:
+        class: Louvre\BookingBundle\Validator\Constraints\Check1000TicketsLimitValidator
+        arguments: ["@tickets_availability_check"]
+        tags:
+            - { name: validator.constraint_validator }

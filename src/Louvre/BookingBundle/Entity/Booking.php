@@ -59,8 +59,9 @@ class Booking
      * @ORM\Column(name="numberOfTickets", type="integer")
      *
      * @Assert\NotBlank(message="Veuillez indiquer le nombre de billets.")
-     *
      * @Assert\GreaterThan(value=0, message="Le nombre de billets doit être supérieur à zéro.")
+     * @BookingAssert\Check1000TicketsLimit()
+     *
      */
     private $numberOfTickets;
 
