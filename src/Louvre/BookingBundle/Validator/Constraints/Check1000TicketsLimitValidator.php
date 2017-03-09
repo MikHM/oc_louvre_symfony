@@ -21,15 +21,16 @@ class Check1000TicketsLimitValidator extends ConstraintValidator
 
     public function validate($dateOfVisit, Constraint $constraint)
     {
+
         // ticket in already sold
         $tickets = $this->ticketsLimite->selectedDayTickes($dateOfVisit);
         // tickets requested by visitor
-        $amountOfTickets = $this->context->getRoot()->get("numberOfTickets")->getData();
+        $amountOfTickets = $this->context->getRoot()->getData()->getNumberOfTickets();
         // Total of tickets, right NOW.
         $totalTickets = $tickets + $amountOfTickets;
 
 
-        if ( ($tickets >= 1000) || ($totalTickets >= 1000) )
+        if ($totalTickets >= 1000)
         {
             $this->context->buildViolation($constraint->message)->addViolation();
         }

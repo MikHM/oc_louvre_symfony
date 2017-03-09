@@ -33,8 +33,8 @@ class VisitorsType extends AbstractType
             ->add('discount', ChoiceType::class, array(
                 'label' => 'Tarif réduit?',
                 'choices'  => array(
-                    'Oui' => true,
                     'Non' => false,
+                    'Oui' => true,
                 ),
             ))
         ;

@@ -12,9 +12,9 @@ class After2PMValidator extends ConstraintValidator
         $today = new \DateTime();
         $currentHour = $today->format("H");
 
-        $demiJournee = $this->context->getRoot()->get("durationOfVisit")->getData();
+        $demiJournee = $this->context->getRoot()->getData()->getDurationOfVisit();
 
-
+        // TODO 14 thing
         if ($demiJournee == true)
         {
             if ($currentHour >= 14)

@@ -7,6 +7,14 @@ body {
 #myform ul li {
     color: #d2241d;
 }
+
+
+.summary ul li {
+    list-style: none;
+    display:block;
+    float:left;
+    width:100px;
+}
 /*
 !******************************
 Top Nav General Styling

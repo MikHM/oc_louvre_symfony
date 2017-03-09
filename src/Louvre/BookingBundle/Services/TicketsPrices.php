@@ -4,43 +4,53 @@ namespace Louvre\BookingBundle\Services;
 
 
 use Doctrine\ORM\EntityManager;
+use Louvre\BookingBundle\Entity\Booking;
 
 class TicketsPrices
 {
-    private $em;
+    /*private $em;
 
     public function __construct(EntityManager $em)
     {
         $this->em = $em;
-    }
+    }*/
 
-    public function setVisitorsTicketPrice( )
+    public function setVisitorsTicketPrice(Booking $reservation)
     {
-        // TODO Find a way to get $discount in here
-        $ticketPrice = 0;
-        // find a way to calculate each visitor's age.
-        $visitorAge = null; // From visitor's BD to current date?!
+        $total = 0;
 
-        // add a if else statement to set the tickets price.
-        if ($discount)  // tarif réduit
+        $currentDay = new \DateTime();
+
+        foreach($reservation->getVisitors() as $visitor)
         {
-            $ticketPrice = 10;
-        }
-        elseif ( $visitorAge >= 4 && $visitorAge < 12) // tarif enfant
-        {
-            $ticketPrice = 8;
-        }
-        elseif ( $visitorAge >= 12 && $visitorAge < 60) // tarif normal
-        {
-            $ticketPrice = 16;
-        }
-        elseif ( $visitorAge > 60 ) // tarif senior
-        {
-            $ticketPrice = 12;
+            // From visitor's BD to current date, get his age
+            $computeAge = date_diff($currentDay, $visitor->getDateOfBirth());
+            $visitorAge = $computeAge->format("%y");
+
+            // Setting tickets price
+            if ($visitor->getDiscount())  // tarif réduit
+            {
+                $visitor->setTicketPrice(10);
+            }
+            elseif ( $visitorAge >= 4 && $visitorAge < 12) // tarif enfant
+            {
+                $visitor->setTicketPrice(8);
+            }
+            elseif ( $visitorAge >= 12 && $visitorAge < 60) // tarif normal
+            {
+                $visitor->setTicketPrice(16);
+            }
+            elseif ( $visitorAge > 60 ) // tarif senior
+            {
+                $visitor->setTicketPrice(12);
+            }
+
+            $total += $visitor->getTicketPrice();
         }
 
+        $reservation->setTotalBookingPrice($total);
 
-        return $ticketPrice;
+        return $reservation;
     }
 
 }

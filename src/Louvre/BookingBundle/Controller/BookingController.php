@@ -60,16 +60,13 @@ class BookingController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $numberOfTickets = $amount;
-
-        for ($i = 0; $i < $numberOfTickets; $i++)
+        for ($i = 0; $i < $amount; $i++)
         {
             $newVisitor = new Visitors();
             $reservation->addVisitor($newVisitor);
-
         }
 
-
+        // TODO erase and add to the view
         $form = $this->createForm(BookingSecondStepType::class, $reservation, array(
             "attr" => [
                 "id" => "myform",
@@ -81,9 +78,17 @@ class BookingController extends Controller
 
         if ($form->isSubmitted() && $form->isValid())
         {
+
+            // TODO how about adding the ticket price here?
+            $setTicketPrice = $this->get("tickets_price");
+            $price = $setTicketPrice->setVisitorsTicketPrice($reservation);
+
+
             $em->flush();
 
-            return $this->redirectToRoute("booking_summary");
+            return $this->redirectToRoute("booking_summary", array(
+                "id" => $reservation->getId()
+            ));
 
         }
 
@@ -94,18 +99,29 @@ class BookingController extends Controller
         
     }
 
-    /**
-     * @Route("/bookingSummary", name="booking_summary")
-     */
-    public function summaryAction()
-    {
 
-        return $this->render("@Booking/Booking/bookingSummary.html.twig");
+    /**
+     * @Route("/bookingSummary/{id}", name="booking_summary")
+     */
+    public function summaryAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $booking = $em->getRepository("BookingBundle:Booking")->find($id);
+
+
+        return $this->render("@Booking/Booking/bookingSummary.html.twig", array(
+            "booking" => $booking
+        ));
     }
 
+
+    /**
+     * @Route("/bookingCheckout", name="booking_checkout")
+     */
     public function checkoutAction()
     {
-        
+        return $this->render("@Booking/Booking/bookingCheckout.html.twig");
     }
 
 }

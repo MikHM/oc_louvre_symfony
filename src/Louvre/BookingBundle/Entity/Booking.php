@@ -44,9 +44,9 @@ class Booking
     private $dateOfVisit;
 
     /**
-     * @var int
+     * @var bool
      *
-     * @ORM\Column(name="durationOfVisit", type="integer")
+     * @ORM\Column(name="durationOfVisit", type="boolean")
      *
      * @BookingAssert\After2PM()
      *

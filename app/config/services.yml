@@ -16,3 +16,7 @@ services:
         arguments: ["@tickets_availability_check"]
         tags:
             - { name: validator.constraint_validator }
+
+    tickets_price:
+        class: Louvre\BookingBundle\Services\TicketsPrices
+        arguments:
