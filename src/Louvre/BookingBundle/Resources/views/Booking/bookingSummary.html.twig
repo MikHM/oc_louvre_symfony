@@ -22,6 +22,8 @@
 
     <div class="container">
 
+        {# TODO make this view Responsive #}
+
         <div class="row">
             <table class="table tablet-layout table-hover">
                 <thead>
@@ -59,6 +61,17 @@
                 </tbody>
             </table>
 
+            <form action="{{ path("booking_checkout", {"id": id}) }}" method="POST">
+                <script
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="TEST_PUBLISHABLE_KEY"
+                        data-amount="{{ booking.totalBookingPrice * 100 }}"
+                        data-name="Musée du Louvre"
+                        data-description="Widget"
+                        data-locale="auto"
+                        data-currency="eur">
+                </script>
+            </form>
 
         </div>
 

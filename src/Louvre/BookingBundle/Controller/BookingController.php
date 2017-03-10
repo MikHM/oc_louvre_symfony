@@ -111,17 +111,47 @@ class BookingController extends Controller
 
         return $this->render("@Booking/Booking/bookingSummary.html.twig", array(
             "booking" => $booking,
-            "visitors" => $visitors
+            "visitors" => $visitors,
+            "id" => $booking->getId()
         ));
     }
 
 
     /**
-     * @Route("/bookingCheckout", name="booking_checkout")
+     * @Route("/bookingCheckout/{id}", name="booking_checkout")
      */
-    public function checkoutAction()
+    public function checkoutAction($id)
     {
-        return $this->render("@Booking/Booking/bookingCheckout.html.twig");
+        // Passing the stripe key from the parameters.yml
+        $stripeKey = $this->getParameter("stripe_private_key");
+
+        // Getting the booking's price to be charged
+        $em = $this->getDoctrine()->getManager();
+        $booking = $em->getRepository("BookingBundle:Booking")->find($id);
+        $bookingPrice = $booking->getTotalBookingPrice() * 100;
+
+
+        try {
+            // using payementByStripe service to charge the card
+            $cardCharge = $this->get("payement_by_stripe");
+            $cardCharge->BookingPayement($stripeKey, $bookingPrice);
+
+            // TODO send mail to user, NEED to finish mailing service!!
+            // fetch mail ling service
+            // $bookingEmail = $this->get("SendBookingByEmail");
+            // $bookingEmail->bookingMail($booking);
+
+
+            $this->addFlash("success","Payement accepté! Vous recevrez bientôt vos billets dans votre boîte mail.");
+            return $this->redirectToRoute("newbooking");
+            // The card has been accepted
+
+        } catch(\Stripe\Error\Card $e) {
+
+            $this->addFlash("error","Payement refusé! Veuillez réessayer.");
+            return $this->redirectToRoute("booking_summary");
+            // The card has been declined
+        }
     }
 
 }

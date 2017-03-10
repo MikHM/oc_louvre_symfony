@@ -20,3 +20,8 @@ services:
     tickets_price:
         class: Louvre\BookingBundle\Services\TicketsPrices
         arguments:
+
+    payement_by_stripe:
+        class: Louvre\BookingBundle\Services\PayementByStripe
+        arguments: ["%stripe_public_key%"]
+
