@@ -22,19 +22,19 @@
 
     <div class="container">
 
-        {# TODO make this view Responsive #}
+        {# TODO make this view Responsive, all in all BETTER looking than this #}
 
         <div class="row">
             <table class="table tablet-layout table-hover">
                 <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Prénom</th>
-                    <th>Nom</th>
-                    <th>Date de naissance</th>
-                    <th>Prix du billet</th>
-                    <th>Tarif réduit</th>
-                </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Date de naissance</th>
+                        <th>Prix du billet</th>
+                        <th>Tarif réduit</th>
+                    </tr>
                 </thead>
                 <tbody>
                 {% for visitor in visitors %}
@@ -67,7 +67,7 @@
                         data-key="{{ stripeKey }}"
                         data-amount="{{ booking.totalBookingPrice * 100 }}"
                         data-name="Musée du Louvre"
-                        data-description="Widget"
+                        data-description="Payement par carte"
                         data-locale="auto"
                         data-currency="eur">
                 </script>

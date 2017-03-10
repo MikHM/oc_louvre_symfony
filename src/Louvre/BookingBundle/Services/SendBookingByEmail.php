@@ -4,6 +4,7 @@ namespace Louvre\BookingBundle\Services;
 
 
 
+use Louvre\BookingBundle\Entity\Booking;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Form\Extension\Templating\TemplatingExtension;
 use Symfony\Component\Templating\EngineInterface;
@@ -17,25 +18,28 @@ class SendBookingByEmail
 
     public function __construct(\Swift_Mailer $mailer,  EngineInterface $template)
     {
+        $this->template = $template;
         $this->mailer = $mailer;
     }
 
-    public function bookingMail()
+    public function bookingMail(Booking $booking)
     {
+        $clientEmail = $booking->getClientEmail();
 
-
-        $booking = \Swift_Message::newInstance()
-            // TODO: Content of the message goes here
+        $bookingEmail = \Swift_Message::newInstance()
             ->setSubject("Vos billets pour le Louvre")
             ->setFrom("service_reservation@museedulouvre.fr")
-            ->setTo("/* visitor @ here */")
-            /*->setBody(
-                $this->template->render("booking")
-            )*/
+            ->setTo($clientEmail)
+            ->setBody(
+                $this->template->render("@Booking/Booking/bookingEmail.html.twig", array(
+                    "totalBookingPrice" => $booking->getTotalBookingPrice(),
+                    "dateOfVisit" => $booking->getDateOfVisit(),
+                    "visitors" => $booking->getVisitors()
+                ))
+            )
             ;
 
-        $this->mailer->send($booking);
-
+        $this->mailer->send($bookingEmail);
     }
 
 }

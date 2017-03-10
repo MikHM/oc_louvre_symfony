@@ -127,7 +127,7 @@ class BookingController extends Controller
     public function checkoutAction($id)
     {
         // Passing the stripe key from the parameters.yml
-        $stripeKey = $this->getParameter("stripe_public_key");
+        $stripeKey = $this->getParameter("stripe_private_key");
 
         // Getting the booking's price to be charged
         $em = $this->getDoctrine()->getManager();

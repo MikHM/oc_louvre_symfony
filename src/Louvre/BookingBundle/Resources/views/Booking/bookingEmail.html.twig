@@ -1,1 +1,45 @@
 <h2>Votre réservation</h2>
+
+<p>La date de votre visite chez nous: {{ dateOfVisit }}</p>
+
+<p>Le prix total TTC de votre réservation est de <strong>{{ totalBookingPrice }} €</strong></p>
+
+<h4>Ci-dessous la liste des visiteurs pour de votre réservation</h4>
+
+<div class="row">
+    <table class="table tablet-layout table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Date de naissance</th>
+            <th>Prix du billet</th>
+            <th>Tarif réduit</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for visitor in visitors %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ visitor.firstName }}</td>
+                <td>{{ visitor.lastName }}</td>
+                <td>{{ visitor.dateOfBirth|date('d/m/Y') }}</td>
+                <td>{{ visitor.ticketPrice }}€</td>
+                <td>
+                    {% if visitor.discount == false %}
+                        Tarif non réduit
+                    {% else %}
+                        Tarif réduit*
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                {% if visitor.discount == true %}
+                    <p>*La carte d’étudiant, militaire ou équivalent sera demandée lors de l’entrée pour prouver que vous bénéficiez bien du tarif réduit.</p>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
