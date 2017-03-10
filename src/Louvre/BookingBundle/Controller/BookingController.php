@@ -7,7 +7,6 @@ use Louvre\BookingBundle\Entity\Booking;
 use Louvre\BookingBundle\Entity\Visitors;
 use Louvre\BookingBundle\Form\BookingSecondStepType;
 use Louvre\BookingBundle\Form\BookingType;
-use Louvre\BookingBundle\Form\VisitorsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -108,10 +107,11 @@ class BookingController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $booking = $em->getRepository("BookingBundle:Booking")->find($id);
-
+        $visitors = $booking->getVisitors();
 
         return $this->render("@Booking/Booking/bookingSummary.html.twig", array(
-            "booking" => $booking
+            "booking" => $booking,
+            "visitors" => $visitors
         ));
     }
 

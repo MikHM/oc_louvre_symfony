@@ -10,21 +10,58 @@
     <div class="container">
         <div class="row summary">
             <h2>Récapitulatif de votre résevation</h2>
-            <ul>
-                <li>Ticket #{{ booking.id }}</li>
-                <li>Billets</li>
-                <li>Nombre</li>
-                <li>Prix</li>
-            </ul>
+            <p>Réservation numéro {{ booking.id }}</p>
 
             <br>
 
-            <ul>
-                <li><strong>Total TTC</strong></li>
-                <li>00</li>
-                <li>00 €</li>
-            </ul>
+            <p>Le prix total TTC de votre commande est de <strong>{{ booking.totalBookingPrice }} €</strong></p>
+
+            <p>Ci-dessous la liste des visiteurs pour votre réservation:</p>
         </div>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+            <table class="table tablet-layout table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Date de naissance</th>
+                    <th>Prix du billet</th>
+                    <th>Tarif réduit</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for visitor in visitors %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ visitor.firstName }}</td>
+                        <td>{{ visitor.lastName }}</td>
+                        <td>{{ visitor.dateOfBirth|date('d/m/Y') }}</td>
+                        <td>{{ visitor.ticketPrice }}€</td>
+                        <td>
+                            {% if visitor.discount == false %}
+                                Tarif non réduit
+                            {% else %}
+                                Tarif réduit*
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        {% if visitor.discount == true %}
+                            <p>*La carte d’étudiant, militaire ou équivalent sera demandée lors de l’entrée pour prouver que vous bénéficiez bien du tarif réduit.</p>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+        </div>
+
     </div>
 
 {% endblock %}

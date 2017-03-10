@@ -14,10 +14,10 @@ class After2PMValidator extends ConstraintValidator
 
         $demiJournee = $this->context->getRoot()->getData()->getDurationOfVisit();
 
-        // TODO 14 thing
+
         if ($demiJournee == true)
         {
-            if ($currentHour >= 14)
+            if (($dateOfVisit == $today) && ($currentHour >= 14))
             {
                 $this->context->buildViolation($constraint->message)->addViolation();
             }

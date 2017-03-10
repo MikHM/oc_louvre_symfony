@@ -79,7 +79,6 @@ class Visitors
      * @ORM\Column(name="ticketPrice", type="decimal", precision=10, scale=2)
      */
     private $ticketPrice = 0;
-    // TODO remove this and add it for real
 
     
 
