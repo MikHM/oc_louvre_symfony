@@ -106,13 +106,17 @@ class BookingController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        // will fix error from summary view asking for proper Stripe key.
+        $stripeKey = $this->getParameter("stripe_public_key");
+
         $booking = $em->getRepository("BookingBundle:Booking")->find($id);
         $visitors = $booking->getVisitors();
 
         return $this->render("@Booking/Booking/bookingSummary.html.twig", array(
             "booking" => $booking,
             "visitors" => $visitors,
-            "id" => $booking->getId()
+            "id" => $booking->getId(),
+            "stripeKey" => $stripeKey
         ));
     }
 
@@ -123,7 +127,7 @@ class BookingController extends Controller
     public function checkoutAction($id)
     {
         // Passing the stripe key from the parameters.yml
-        $stripeKey = $this->getParameter("stripe_private_key");
+        $stripeKey = $this->getParameter("stripe_public_key");
 
         // Getting the booking's price to be charged
         $em = $this->getDoctrine()->getManager();
