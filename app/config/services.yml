@@ -25,3 +25,6 @@ services:
         class: Louvre\BookingBundle\Services\PayementByStripe
         arguments: ["%stripe_public_key%"]
 
+    SendBookingByEmail:
+        class: Louvre\BookingBundle\Services\SendBookingByEmail
+        arguments: ["@templating", "@mailer"]

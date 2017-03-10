@@ -140,10 +140,10 @@ class BookingController extends Controller
             $cardCharge = $this->get("payement_by_stripe");
             $cardCharge->BookingPayement($stripeKey, $bookingPrice);
 
-            // TODO send mail to user, NEED to finish mailing service!!
+
             // fetch mail ling service
-            // $bookingEmail = $this->get("SendBookingByEmail");
-            // $bookingEmail->bookingMail($booking);
+            $bookingEmail = $this->get("SendBookingByEmail");
+            $bookingEmail->bookingMail($booking);
 
 
             $this->addFlash("success","Payement accepté! Vous recevrez bientôt vos billets dans votre boîte mail.");
