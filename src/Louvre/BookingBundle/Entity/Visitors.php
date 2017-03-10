@@ -16,7 +16,7 @@ class Visitors
     /**
      * @var Booking
      *
-     * @ORM\ManyToOne(targetEntity="Louvre\BookingBundle\Entity\Booking", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Louvre\BookingBundle\Entity\Booking", inversedBy="visitors", cascade={"persist"})
      * @ORM\JoinColumn(name="bookingId", referencedColumnName="id", nullable=false)
      */
     private $booking;

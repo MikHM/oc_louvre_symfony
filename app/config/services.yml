@@ -27,4 +27,4 @@ services:
 
     SendBookingByEmail:
         class: Louvre\BookingBundle\Services\SendBookingByEmail
-        arguments: ["@templating", "@mailer"]
+        arguments: ["@mailer", "@templating" ]

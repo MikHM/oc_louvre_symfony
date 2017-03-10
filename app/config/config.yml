@@ -69,7 +69,3 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-# Stripe
-#stripe:
-#    public_key: "%stripe_public_key%"
-#    private_key: "%stripe_private_key%"

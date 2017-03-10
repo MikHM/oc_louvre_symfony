@@ -36,6 +36,7 @@ class Booking
      * @ORM\Column(name="dateOfVisit", type="date")
      *
      * @Assert\NotBlank(message="Veuillez indiquer la date de votre visite.")
+     * @Assert\GreaterThan("today")
      * @BookingAssert\ClosedOnTuesdays()
      * @BookingAssert\NoBookingOnSundays()
      * @BookingAssert\ClosedForBankHolidays()

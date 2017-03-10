@@ -9,15 +9,17 @@ class After2PMValidator extends ConstraintValidator
 {
     public function validate($dateOfVisit, Constraint $constraint)
     {
+
         $today = new \DateTime();
         $currentHour = $today->format("H");
 
         $demiJournee = $this->context->getRoot()->getData()->getDurationOfVisit();
 
+        dump($dateOfVisit);
 
         if ($demiJournee == true)
         {
-            if (($dateOfVisit == $today) && ($currentHour >= 14))
+            if (($dateOfVisit->format("Ymd") == $today->format("Ymd")) && ($currentHour >= 14))
             {
                 $this->context->buildViolation($constraint->message)->addViolation();
             }

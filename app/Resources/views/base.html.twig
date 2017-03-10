@@ -14,6 +14,17 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('img/home_crumb.png') }}" />
 </head>
 <body>
+
+{#// TODO Better way to do this: flashMessage#}
+{%  for flashMessage in app.session.flashbag.get("success") %}
+    <div>{{ flashMessage }}</div>
+{% endfor %}
+
+{%  for flashMessage in app.session.flashbag.get("error") %}
+    <div>{{ flashMessage }}</div>
+{% endfor %}
+
+
 <div class="row">
     <header class="row title col-md-4 col-md-offset-4">
         <img src="{{ asset('img/small_logo_Louvre.png') }}" alt="Logo du musée du Louvre - Page d’accueil du site internet du musée du Louvre (Paris, France)">

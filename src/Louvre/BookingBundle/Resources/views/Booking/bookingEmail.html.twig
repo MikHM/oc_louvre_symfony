@@ -1,6 +1,6 @@
 <h2>Votre réservation</h2>
 
-<p>La date de votre visite chez nous: {{ dateOfVisit }}</p>
+<p>La date de votre visite chez nous: {{ dateOfVisit |date('d/m/Y')}}</p>
 
 <p>Le prix total TTC de votre réservation est de <strong>{{ totalBookingPrice }} €</strong></p>
 
