@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $( function() {
         $( ".datepicker" ).datepicker({
+            format: 'yyyy-mm-dd',
             minDate: new Date(),
             beforeShowDay: function (date) {
                 var holidays = [
@@ -33,3 +34,4 @@ $(document).ready(function(){
         });
     } );
 });
+

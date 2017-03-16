@@ -7,18 +7,13 @@
 
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('vendor/jquery-ui-1.12.0/jquery-ui.css') }}">
-        {#<link rel="stylesheet" href="{{ asset('css/normalize.css') }}">#}
+        {#<link rel="stylesheet" href="{{ asset('vendor/jquery-ui-1.12.0/jquery-ui.css') }}">#}
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('img/home_crumb.png') }}" />
 </head>
 <body>
-
-{#// TODO Better way to do this: flashMessage#}
-{%  for flashMessage in app.session.flashbag.get("success") %}
-    <div>{{ flashMessage }}</div>
-{% endfor %}
 
 {%  for flashMessage in app.session.flashbag.get("error") %}
     <div>{{ flashMessage }}</div>
@@ -30,6 +25,14 @@
         <img src="{{ asset('img/small_logo_Louvre.png') }}" alt="Logo du musée du Louvre - Page d’accueil du site internet du musée du Louvre (Paris, France)">
         <h1>Billetterie officielle</h1>
     </header>
+    <div class="nav">
+        <ul>
+            <li id="activetab" title="Choisissez un billet">Etape 1</li>
+            <li title="Date de la visite">Etape 2</li>
+            <li title="Votre panier">Etape 3</li>
+            <li title="Vérifiez votre commande">Etape 4</li>
+        </ul>
+    </div>
 </div>
 
 
@@ -54,9 +57,10 @@
 
 {% block javascripts %}
 
-    <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js') }}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('vendor/jquery-ui-1.12.0/jquery-ui.min.js') }}"></script>
+    {#<script src="{{ asset('vendor/jquery-ui-1.12.0/jquery-ui.min.js') }}"></script>#}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
 {% endblock %}
 </body>
