@@ -1,0 +1,33 @@
+{% extends "@Booking/layout.html.twig" %}
+
+{% block head %}
+    {{ parent() }}
+    {%  block title %}Billeterie - Confirmation{% endblock %}
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row text-center">
+            <h2 class="">Confirmation de votre réservation</h2>
+            <br>
+            <p>Bonjour,</p>
+            <p>le payement de votre réservation a été validé.</p>
+
+            <p>Votre réservation contient {{ booking.numberOfTickets }}
+
+            {% if booking.numberOfTickets > 1 %}
+                tickets</p>
+                <p>Vos billets vous serons envoyés par email au</p>
+                {% elseif booking.numberOfTickets == 1 %}
+                    ticket</p>
+                    <p>Votre billet vous sera envoyé par email au.</p>
+            {% endif %}
+            <p>{{ booking.clientEmail }}</p>
+            <p>Au plaisir de vous voir le {{ booking.dateOfVisit | date("m/d/Y", "Europe/Paris")}}</p>
+
+            <a href="{{ path("newbooking") }}"><button>Confirmé</button></a>
+        </div>
+    </div>
+
+{% endblock %}

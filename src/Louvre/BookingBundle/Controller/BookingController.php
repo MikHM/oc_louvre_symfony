@@ -146,8 +146,10 @@ class BookingController extends Controller
             $bookingEmail->bookingMail($booking);
 
 
-            $this->addFlash("success","Payement accepté! Vous recevrez bientôt vos billets dans votre boîte mail.");
-            return $this->redirectToRoute("newbooking");
+            /*$this->addFlash("success","Payement accepté! Vous recevrez bientôt vos billets dans votre boîte mail.");*/
+            return $this->redirectToRoute("booking_confirmation", array(
+                "id" => $id
+            ));
             // The card has been accepted
 
         } catch(\Stripe\Error\Card $e) {
@@ -156,6 +158,20 @@ class BookingController extends Controller
             return $this->redirectToRoute("booking_summary");
             // The card has been declined
         }
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/bookingConfirmation/{id}", name="booking_confirmation")
+     */
+    public function confirmationAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $booking = $em->getRepository("BookingBundle:Booking")->find($id);
+
+        return $this->render("@Booking/Booking/bookingConfirmation.html.twig", array(
+            "booking" => $booking
+        ));
     }
 
 }
