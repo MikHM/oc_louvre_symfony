@@ -14,9 +14,9 @@
             <p>Bonjour,</p>
             <p>le payement de votre réservation a été validé.</p>
 
-            <p>Le numéro de votre réservation: {{ booking.bookingCodeNumber }}</p>
+            <p>Le numéro de votre réservation: <strong>{{ booking.bookingCodeNumber }}</strong></p>
 
-            <p>Votre réservation contient {{ booking.numberOfTickets }}
+            <p>Votre réservation contient <strong>{{ booking.numberOfTickets }}</strong>
 
             {% if booking.numberOfTickets > 1 %}
                 tickets</p>
@@ -25,8 +25,8 @@
                     ticket</p>
                     <p>Votre billet vous sera envoyé par email au.</p>
             {% endif %}
-            <p>{{ booking.clientEmail }}</p>
-            <p>Au plaisir de vous voir le {{ booking.dateOfVisit | date("m/d/Y", "Europe/Paris")}}</p>
+            <p><strong>{{ booking.clientEmail }}</strong></p>
+            <p>Au plaisir de vous voir le <strong>{{ booking.dateOfVisit | date("m/d/Y", "Europe/Paris")}}</strong></p>
 
             <a href="{{ path("newbooking") }}"><button>Confirmé</button></a>
         </div>

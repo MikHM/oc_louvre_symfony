@@ -1,23 +1,23 @@
 {# TODO hot to avoid hot linking, cuz this is a dick move!!#}
 <img src="{#{{ asset('img/Louvre-logo-mail.jpg') }}#}http://www.ecoledulouvre.fr/webmaster/newsletter/Louvre-logo.jpg" alt="logo musée du louvre">
 
-<h2>Vos billets pour le Musée du Louvre</h2>
+<h1>Vos billets pour le Musée du Louvre</h1>
 
 <p>Bonjour,</p>
 
 <p>Suite à la commande que vous avez effectué sur notre site,nous vous adressons dans ce mails le détails de vos billets.</p>
 
-<p>Numéro de votre réservation: {{ bookingCode }}</p>
+<p>Numéro de votre réservation: <strong>{{ bookingCode }}</strong></p>
 
-<p>La date de votre visite chez nous: {{ dateOfVisit |date('d/m/Y')}}</p>
+<p>La date de votre visite chez nous: <strong>{{ dateOfVisit |date('d/m/Y')}}</strong></p>
 
 <p>Le prix total TTC de votre réservation est de <strong>{{ totalBookingPrice }} €</strong></p>
 
-<h4>Ci-dessous la liste des visiteurs de votre réservation</h4>
+<h2>Ci-dessous la liste des visiteurs pour votre réservation</h2>
 
 <div class="row">
     <table class="table tablet-layout table-hover">
-        <thead>
+        <thead class="thead-inverse">
         <tr>
             <th>#</th>
             <th>Prénom</th>
@@ -43,14 +43,16 @@
                     {% endif %}
                 </td>
             </tr>
-            <tr>
+            {#<tr>
                 {% if visitor.discount == true %}
                     <p>*La carte d’étudiant, militaire ou équivalent sera demandée lors de l’entrée pour prouver que vous bénéficiez bien du tarif réduit.</p>
                 {% endif %}
-            </tr>
+            </tr>#}
         {% endfor %}
         </tbody>
     </table>
+
+    <p>*La carte d’étudiant, militaire ou équivalent sera demandée lors de l’entrée pour prouver que vous bénéficiez bien du tarif réduit.</p>
 
     <p><strong>IMPORTANT:</strong> Vous devez imprimer ce document et à le présenter à l'accueil le jour de votre visite</p>
 
