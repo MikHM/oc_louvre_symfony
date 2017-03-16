@@ -8,7 +8,7 @@
 {% block body %}
 
     <div class="container">
-        <div class="row summary">
+        <div class="row col-md-8">
             <h2>Récapitulatif de votre résevation</h2>
             <p>Réservation numéro {{ booking.id }}</p>
 
@@ -18,14 +18,9 @@
 
             <p>Ci-dessous la liste des visiteurs pour votre réservation:</p>
         </div>
-    </div>
 
-    <div class="container">
-
-        {# TODO make this view Responsive, all in all BETTER looking than this #}
-
-        <div class="row">
-            <table class="table tablet-layout table-hover">
+        <div class="row col-md-8">
+            <table class="table table-responsive tablet-layout table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -75,7 +70,6 @@
             </form>
 
         </div>
-
     </div>
 
 {% endblock %}

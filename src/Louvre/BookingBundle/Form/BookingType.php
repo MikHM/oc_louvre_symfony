@@ -21,13 +21,13 @@ class BookingType extends AbstractType
         $builder
             ->add('dateOfVisit', DateType::class, array(
                 "label" => "Date de votre visite:",
-                "widget" => "single_text",
+                /*"widget" => "single_text",*/
                 /*"html5" => false,*/
-                "format" => "MM-dd-yyyy", // MM-dd-yyyy yyyy-MM-dd
-                "placeholder" => array("year" => "Année", "month" => "Mois", "day" => "Jour"),
-                "attr" => array(
-                    "class" => "datepicker date"
-                )
+                /*"format" => "MM-dd-yyyy",*/ // Y/m/d MM-dd-yyyy yyyy-MM-dd
+                /*"placeholder" => array("year" => "Année", "month" => "Mois", "day" => "Jour"),*/
+                /*"attr" => array(
+                    "class" => "datepicker"
+                )*/
                 // TODO add constraint "check 1000 tickets" here
                 ))
             ->add('durationOfVisit', ChoiceType::class, array(
@@ -44,7 +44,7 @@ class BookingType extends AbstractType
                 "label" => "Votre adresse email"
             ))
             ->add("submit", SubmitType::class, array(
-                "label" => "Reserver"
+                "label" => "Réserver"
             ))
         ;
     }

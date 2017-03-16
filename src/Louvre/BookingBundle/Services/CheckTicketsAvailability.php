@@ -6,7 +6,6 @@ namespace Louvre\BookingBundle\Services;
 use Doctrine\ORM\EntityManager;
 
 
-// TODO add this into the Assertions
 class CheckTicketsAvailability
 {
     protected $em;

@@ -31,7 +31,6 @@ class Booking
     private $id;
 
     /**
-     * @var \DateTime
      *
      * @ORM\Column(name="dateOfVisit", type="date")
      *
@@ -40,6 +39,7 @@ class Booking
      * @BookingAssert\ClosedOnTuesdays()
      * @BookingAssert\NoBookingOnSundays()
      * @BookingAssert\ClosedForBankHolidays()
+     * @BookingAssert\After2PM()
      *
      */
     private $dateOfVisit;
@@ -49,7 +49,7 @@ class Booking
      *
      * @ORM\Column(name="durationOfVisit", type="boolean")
      *
-     * @BookingAssert\After2PM()
+     *
      *
      */
     private $durationOfVisit;
