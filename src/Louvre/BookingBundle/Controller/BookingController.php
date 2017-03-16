@@ -20,6 +20,9 @@ class BookingController extends Controller
     {
         $newBooking = new Booking();
 
+        // Setting the booking's code number
+        $newBooking->setBookingCodeNumber(uniqid());
+
         $form = $this->createForm(BookingType::class, $newBooking, array(
             "action"=>$this->generateUrl("newbooking"),
             "method"=>"POST",

@@ -14,6 +14,8 @@
             <p>Bonjour,</p>
             <p>le payement de votre réservation a été validé.</p>
 
+            <p>Le numéro de votre réservation: {{ booking.bookingCodeNumber }}</p>
+
             <p>Votre réservation contient {{ booking.numberOfTickets }}
 
             {% if booking.numberOfTickets > 1 %}
