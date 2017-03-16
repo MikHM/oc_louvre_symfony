@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+
 class BookingController extends Controller
 {
     /**
@@ -144,12 +145,11 @@ class BookingController extends Controller
             $cardCharge->BookingPayement($stripeKey, $bookingPrice);
 
 
-            // fetch mail ling service
+            // fetch mailing service
             $bookingEmail = $this->get("SendBookingByEmail");
             $bookingEmail->bookingMail($booking);
 
 
-            /*$this->addFlash("success","Payement accepté! Vous recevrez bientôt vos billets dans votre boîte mail.");*/
             return $this->redirectToRoute("booking_confirmation", array(
                 "id" => $id
             ));

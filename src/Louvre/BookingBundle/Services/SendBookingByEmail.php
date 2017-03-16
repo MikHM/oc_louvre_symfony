@@ -34,8 +34,10 @@ class SendBookingByEmail
                 $this->template->render("@Booking/Booking/bookingEmail.html.twig", array(
                     "totalBookingPrice" => $booking->getTotalBookingPrice(),
                     "dateOfVisit" => $booking->getDateOfVisit(),
-                    "visitors" => $booking->getVisitors()
-                ))
+                    "visitors" => $booking->getVisitors(),
+                    "bookingCode" => $booking->getBookingCodeNumber()
+                )),
+                "text/html"
             )
             ;
 
