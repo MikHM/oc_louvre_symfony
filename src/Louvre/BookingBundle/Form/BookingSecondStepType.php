@@ -17,10 +17,17 @@ class BookingSecondStepType extends AbstractType
     {
         $builder
             ->add("visitors", CollectionType::class, array(
-                "entry_type" => VisitorsType::class
+                "entry_type" => VisitorsType::class,
+                "label" => "Les visiteurs pour votre réservation:",
+                "attr" => array(
+                    "id" => "visitors"
+                )
             ))
             ->add("submit", SubmitType::class, array(
-                "label" => "Reserver"
+                "label" => "Réserver",
+                "attr" => array(
+                    "class" => "btn btn-primary btn-block"
+                )
             ))
         ;
     }

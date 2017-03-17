@@ -71,10 +71,10 @@ class BookingController extends Controller
 
         // TODO erase and add to the view
         $form = $this->createForm(BookingSecondStepType::class, $reservation, array(
-            "attr" => [
+            /*"attr" => [
                 "id" => "myform",
                 "class" => "group"
-            ]
+            ]*/
         ));
 
         $form->handleRequest($request);

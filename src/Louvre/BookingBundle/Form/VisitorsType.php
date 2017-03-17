@@ -19,16 +19,28 @@ class VisitorsType extends AbstractType
     {
         $builder
             ->add('firstName', TextType::class, array(
-                "label" => "Prénom"
+                "label" => "Prénom",
+                "attr" => array(
+                    "class" => "form-control form-group"
+                )
             ))
             ->add('lastName' , TextType::class, array(
-                "label" => "Nom"
+                "label" => "Nom",
+                "attr" => array(
+                    "class" => "form-control form-group mb-2 mr-sm-2 mb-sm-2"
+                )
             ))
             ->add('country', CountryType::class, array(
-                "label" => "Pays"
+                "label" => "Pays",
+                "attr" => array(
+                    "class" => "form-control form-group mb-2 mr-sm-2 mb-sm-2"
+                )
             ))
             ->add('dateOfBirth', BirthdayType::class, array(
-                "label" => "Date de naissance"
+                "label" => "Date de naissance",
+                "attr" => array(
+                    "class" => "form-control form-group mb-2 mr-sm-2 mb-sm-0"
+                )
             ))
             ->add('discount', ChoiceType::class, array(
                 'label' => 'Tarif réduit?',
@@ -36,6 +48,9 @@ class VisitorsType extends AbstractType
                     'Non' => false,
                     'Oui' => true,
                 ),
+                "attr" => array(
+                    "class" => "form-control form-group mb-2 mr-sm-2 mb-sm-0"
+                )
             ))
         ;
     }
