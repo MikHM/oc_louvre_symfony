@@ -3,6 +3,7 @@
 namespace Louvre\BookingBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,6 +22,12 @@ class BookingSecondStepType extends AbstractType
                 "label" => "Les visiteurs pour votre réservation:",
                 "attr" => array(
                     "id" => "visitors"
+                )
+            ))
+            ->add("Revenir à l'étape d'avant", ButtonType::class, array(
+                "attr" => array(
+                    "label" => "Retour",
+                    "class" => "btn btn-info btn-block retourPageOne"
                 )
             ))
             ->add("submit", SubmitType::class, array(
