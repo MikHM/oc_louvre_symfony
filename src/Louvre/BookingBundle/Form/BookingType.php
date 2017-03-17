@@ -24,9 +24,10 @@ class BookingType extends AbstractType
                 "widget" => "single_text",
                 /*"html5" => false,*/
                 /*"format" => "MM-dd-yyyy",*/ // Y/m/d MM-dd-yyyy yyyy-MM-dd
-                "placeholder" => array("year" => "Année", "month" => "Mois", "day" => "Jour"),
+                "placeholder" => "Choisissez une date",
                 "attr" => array(
-                    "class" => "datepicker"
+                    "class" => "datepicker form-control",
+                    "placeholder" => "Année-mois-jours"
                 )
                 // TODO add constraint "check 1000 tickets" here
                 ))
@@ -36,15 +37,30 @@ class BookingType extends AbstractType
                     'Demi-journée' => false,
                     'Journée' => true,
                 ),
+                "attr" => array(
+                    "class" => "form-control",
+                    "placeholder" => "Demi-journée ou journée complète?"
+                )
             ))
             ->add('numberOfTickets', IntegerType::class, array(
-                "label" => "Nombre de billets"
+                "label" => "Nombre de billets",
+                "attr" => array(
+                    "class" => "form-control",
+                    "placeholder" => "0"
+                )
             ))
             ->add('clientEmail', EmailType::class, array(
-                "label" => "Votre adresse email"
+                "label" => "Votre adresse email",
+                "attr" => array(
+                    "class" => "form-control",
+                    "placeholder" => "user@example.com"
+                )
             ))
             ->add("submit", SubmitType::class, array(
-                "label" => "Réserver"
+                "label" => "Réserver",
+                "attr" => array(
+                    "class" => "btn btn-primary btn-block"
+                )
             ))
         ;
     }
