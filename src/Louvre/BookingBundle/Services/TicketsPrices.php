@@ -21,32 +21,37 @@ class TicketsPrices
 
         $currentDay = new \DateTime();
 
+
         foreach($reservation->getVisitors() as $visitor)
         {
             // From visitor's BD to current date, get his age
             $computeAge = date_diff($currentDay, $visitor->getDateOfBirth());
             $visitorAge = $computeAge->format("%y");
+            $coef = ($reservation->getDurationOfVisit())? 1 : 0.5;
 
             // Setting tickets price
-            if ($visitor->getDiscount())  // tarif réduit
+            if ($visitor->getDiscount() && $visitorAge >= 12)  // tarif réduit
             {
-                $visitor->setTicketPrice(10);
+                $visitor->setTicketPrice(10 * $coef);
             }
             elseif ( $visitorAge >= 4 && $visitorAge < 12) // tarif enfant
             {
-                $visitor->setTicketPrice(8);
+                $visitor->setTicketPrice(8  * $coef);
             }
-            elseif ( $visitorAge >= 12 && $visitorAge < 60) // tarif normal
+            elseif ( $visitorAge > 12 && $visitorAge <= 60) // tarif normal
             {
-                $visitor->setTicketPrice(16);
+                $visitor->setTicketPrice(16  * $coef);
             }
             elseif ( $visitorAge > 60 ) // tarif senior
             {
-                $visitor->setTicketPrice(12);
+                $visitor->setTicketPrice(12  * $coef);
             }
 
             $total += $visitor->getTicketPrice();
         }
+
+        $halfDay = $reservation->getDateOfVisit();
+
 
         $reservation->setTotalBookingPrice($total);
 
