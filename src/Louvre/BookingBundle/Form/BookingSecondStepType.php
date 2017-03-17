@@ -24,10 +24,11 @@ class BookingSecondStepType extends AbstractType
                     "id" => "visitors"
                 )
             ))
-            ->add("Revenir à l'étape d'avant", ButtonType::class, array(
+            ->add("Revenir à l'étape précédente", ButtonType::class, array(
                 "attr" => array(
                     "label" => "Retour",
-                    "class" => "btn btn-info btn-block retourPageOne"
+                    "class" => "btn btn-info btn-block retourPageOne",
+                    "href" => "{{ path('newbooking')}}"
                 )
             ))
             ->add("submit", SubmitType::class, array(

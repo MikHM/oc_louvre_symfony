@@ -15,7 +15,6 @@ class After2PMValidator extends ConstraintValidator
 
         $demiJournee = $this->context->getRoot()->getData()->getDurationOfVisit();
 
-        dump($dateOfVisit);
 
         if ($demiJournee == true)
         {
