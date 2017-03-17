@@ -8,18 +8,17 @@
 {% block body %}
 
     <div class="container">
-        <div class="row col-md-8">
+        <div class="col-md-6 col-md-offset-3">
             <h2>Récapitulatif de votre résevation</h2>
-            <p>Réservation numéro {{ booking.id }}</p>
-
             <br>
-
+            <p>Réservation numéro {{ booking.id }}</p>
+            <br>
             <p>Le prix total TTC de votre commande est de <strong>{{ booking.totalBookingPrice }} €</strong></p>
 
             <p>Ci-dessous la liste des visiteurs pour votre réservation:</p>
         </div>
 
-        <div class="row col-md-8">
+        <div class="row col-md-6 col-md-offset-3">
             <table class="table table-responsive tablet-layout table-hover">
                 <thead>
                     <tr>
@@ -52,8 +51,12 @@
             </table>
 
             <p>*La carte d’étudiant, militaire ou équivalent sera demandée lors de l’entrée pour prouver que vous bénéficiez bien du tarif réduit.</p>
-
-            <form action="{{ path("booking_checkout", {"id": id}) }}" method="POST">
+            
+            <br>
+            <button class="btn btn-block btn-info" id="ticketBack"><a href="#">Retour à létape précédente</a></button>
+            <br>
+            
+            <form action="{{ path("booking_checkout", {"id": id}) }}" method="POST" class="text-center">
                 <script
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                         data-key="{{ stripeKey }}"
@@ -65,7 +68,7 @@
                         data-currency="eur">
                 </script>
             </form>
-
+            <br><br>
         </div>
     </div>
 
