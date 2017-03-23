@@ -56,12 +56,12 @@ class BookingType extends AbstractType
                     "placeholder" => "user@example.com"
                 )
             ))
-            ->add("submit", SubmitType::class, array(
+            /*->add("submit", SubmitType::class, array(
                 "label" => "Réserver",
                 "attr" => array(
                     "class" => "btn btn-primary btn-block"
                 )
-            ))
+            ))*/
         ;
     }
     

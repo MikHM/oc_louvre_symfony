@@ -38,7 +38,9 @@ body {
     color: #d2241d;
 }
 
-
+button {
+    margin-top: 2em;
+}
 /******************************
     First Page
 *******************************/
@@ -53,8 +55,8 @@ body {
 #louvre_bookingbundle_booking_submit,
 #booking_second_step_submit
 {
-    margin-top: 2em;
-    margin-bottom: 3em;
+    margin-top: 3em;
+    margin-bottom: 1em;
 }
 
 
@@ -62,19 +64,9 @@ body {
 /******************************
     Second Page
 *******************************/
-#visitors{
-    color: red;
-}
-
-#booking_second_step_visitors:first-child {
-    margin-bottom: 1em;
-    color: red;
-}
-
-.retourPageOne {
-    margin-top: 3em;
-}
-
+##retourPageOne {
+    margin-top: 1em;
+ }
 
 /******************************
 Summary Page Styling

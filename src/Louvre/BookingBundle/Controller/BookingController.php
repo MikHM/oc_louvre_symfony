@@ -172,9 +172,25 @@ class BookingController extends Controller
         $em = $this->getDoctrine()->getManager();
         $booking = $em->getRepository("BookingBundle:Booking")->find($id);
 
+        $booking->setPaid(true);
+
+        $em->flush();
+
         return $this->render("@Booking/Booking/bookingConfirmation.html.twig", array(
             "booking" => $booking
         ));
+    }
+
+    /**
+     * @Route("/translation/{name}")
+     */
+    public function translationAction($name)
+    {
+
+        return $this->render("@Booking/Booking/translation.html.twig", array(
+            'name' => $name
+        ));
+
     }
 
 }

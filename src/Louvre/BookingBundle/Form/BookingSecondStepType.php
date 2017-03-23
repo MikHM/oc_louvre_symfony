@@ -24,13 +24,12 @@ class BookingSecondStepType extends AbstractType
                     "id" => "visitors"
                 )
             ))
-            ->add("Revenir à l'étape précédente", ButtonType::class, array(
+            /*->add("Revenir à l'étape précédente", SubmitType::class, array(
                 "attr" => array(
-                    "label" => "Retour",
-                    "class" => "btn btn-info btn-block retourPageOne",
-                    "href" => "{{ path('newbooking')}}"
+                    'validation_groups' => false,
+                    "class" => "btn btn-info btn-block retourPageOne", "href" => "http://localhost:8888/oc_louvre_symfony/web/app_dev.php/newbooking"
                 )
-            ))
+            ))*/
             ->add("submit", SubmitType::class, array(
                 "label" => "Réserver",
                 "attr" => array(

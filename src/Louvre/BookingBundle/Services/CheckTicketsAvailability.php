@@ -26,7 +26,10 @@ class CheckTicketsAvailability
 
         foreach ($bookings as $booking)
         {
-            $ticketsPerBooking += $booking->getNumberOfBookingsPerDay();
+            if ($booking->getPaid() == true )
+            {
+                $ticketsPerBooking += $booking->getNumberOfBookingsPerDay();
+            }
         }
 
         return $ticketsPerBooking;

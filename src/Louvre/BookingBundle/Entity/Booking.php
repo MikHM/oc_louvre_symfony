@@ -98,7 +98,12 @@ class Booking
      */
     private $totalBookingPrice;
 
-
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="paid", type="boolean", nullable=true)
+     */
+    private $paid;
 
     public function __construct()
     {
@@ -330,5 +335,29 @@ class Booking
     public function getVisitors()
     {
         return $this->visitors;
+    }
+
+    /**
+     * Set paid
+     *
+     * @param boolean $paid
+     *
+     * @return Booking
+     */
+    public function setPaid($paid)
+    {
+        $this->paid = $paid;
+
+        return $this;
+    }
+
+    /**
+     * Get paid
+     *
+     * @return boolean
+     */
+    public function getPaid()
+    {
+        return $this->paid;
     }
 }
