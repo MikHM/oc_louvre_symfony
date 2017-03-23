@@ -23,7 +23,7 @@ class Check1000TicketsLimitValidator extends ConstraintValidator
     {
 
         // ticket in already sold
-        $tickets = $this->ticketsLimite->selectedDayTickes($dateOfVisit);
+        $tickets = $this->ticketsLimite->selectedDayTickets($dateOfVisit);
         // tickets requested by visitor
         $amountOfTickets = $this->context->getRoot()->getData()->getNumberOfTickets();
         // Total of tickets, right NOW.

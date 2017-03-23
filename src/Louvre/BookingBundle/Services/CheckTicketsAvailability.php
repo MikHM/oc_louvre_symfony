@@ -16,7 +16,7 @@ class CheckTicketsAvailability
     }
 
 
-    public function selectedDayTickes($dayToBeChecked)
+    public function selectedDayTickets($dayToBeChecked)
     {
         // fetches the BookingRepository custom method
         $bookings = $this->em->getRepository("BookingBundle:Booking")->getNumberOfBookingsPerDay($dayToBeChecked);
@@ -28,7 +28,7 @@ class CheckTicketsAvailability
         {
             if ($booking->getPaid() == true )
             {
-                $ticketsPerBooking += $booking->getNumberOfBookingsPerDay();
+                $ticketsPerBooking += $booking->getNumberOfTickets();
             }
         }
 
