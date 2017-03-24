@@ -41,7 +41,7 @@ class BookingController extends Controller
             $em->persist($newBooking);
             $em->flush();
 
-            return $this->redirectToRoute("tickets", array(
+            return $this->redirectToRoute("tickets_view", array(
                 "id" => $newBooking->getId(),
                 "amount" => $newBooking->getNumberOfTickets()
             ));
@@ -57,7 +57,7 @@ class BookingController extends Controller
 
 
     /**
-     * @Route("/tickets/{id}/{amount}", name="tickets")
+     * @Route("/tickets/{id}/{amount}", name="tickets_view")
      */
     public function ticketsAction(Request $request, Booking $reservation, $amount)
     {
@@ -180,17 +180,4 @@ class BookingController extends Controller
             "booking" => $booking
         ));
     }
-
-    /**
-     * @Route("/translation/{name}")
-     */
-    public function translationAction($name)
-    {
-
-        return $this->render("@Booking/Booking/translation.html.twig", array(
-            'name' => $name
-        ));
-
-    }
-
 }

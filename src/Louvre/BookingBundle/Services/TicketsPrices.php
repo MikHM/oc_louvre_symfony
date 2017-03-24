@@ -57,5 +57,4 @@ class TicketsPrices
 
         return $reservation;
     }
-
 }
